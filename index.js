@@ -21,23 +21,23 @@ if (document.readyState == 'loading') {
 //marcaçao
 //remove intem do carrinho
 function ready() {
-    var removecartButtons = document.getElementsByClassName('cart-remove')
+    let removecartButtons = document.getElementsByClassName('cart-remove')
     console.log(removecartButtons)
 
-    for (var i = 0; i < removecartButtons.length; i++) {
-        var button = removecartButtons[i]
+    for (let i = 0; i < removecartButtons.length; i++) {
+        let button = removecartButtons[i]
         button.addEventListener('click', removeCartItem)
     }
     //quantidade alteraçoes
-    var quantityInputs = document.getElementsByClassName('cart-quantity')
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i]
+    let quantityInputs = document.getElementsByClassName('cart-quantity')
+    for (let i = 0; i < quantityInputs.length; i++) {
+        let input = quantityInputs[i]
         input.addEventListener('change', quantityChanged)
     }
     // add no carrinho
-    var addCart = document.getElementsByClassName('add-cart')
-    for (var i = 0; i < addCart.length; i++) {
-        var button = addCart[i]
+    let addCart = document.getElementsByClassName('add-cart')
+    for (let i = 0; i < addCart.length; i++) {
+        let button = addCart[i]
         button.addEventListener('click', addCartClicked)
     }
     // botao comprar
@@ -45,7 +45,7 @@ function ready() {
 }
 function buyButonClicked(){
     alert('Sua compra foi Prossesada')
-    var cartContent = document.getElementsByClassName('cart-content')[0]
+    let cartContent = document.getElementsByClassName('cart-content')[0]
     while( cartContent.hasChildNodes()){
         cartContent.removeChild(cartContent.firstChild)
     }
@@ -53,13 +53,13 @@ function buyButonClicked(){
 }
 //remove intem do carrinho
 function removeCartItem(event) {
-    var buttonClicked = event.target
+    let buttonClicked = event.target
     buttonClicked.parentElement.remove();
     updatetotal()
 }
 //quantidade de alteraçoes
 function quantityChanged(event) {
-    var input = event.target
+    let input = event.target
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1
     }
@@ -67,27 +67,27 @@ function quantityChanged(event) {
 }
 // add ao carrinho
 function addCartClicked(event) {
-    var button = event.target
-    var shopProducts = button.parentElement
-    var title = shopProducts.getElementsByClassName('produt-title')[0].innerText
-    var price = shopProducts.getElementsByClassName('price')[0].innerText
-    var productImg = shopProducts.getElementsByClassName('product-img')[0].src
+    let button = event.target
+    let shopProducts = button.parentElement
+    let title = shopProducts.getElementsByClassName('produt-title')[0].innerText
+    let price = shopProducts.getElementsByClassName('price')[0].innerText
+    let productImg = shopProducts.getElementsByClassName('product-img')[0].src
     addProductTocart(title, price, productImg)
     updatetotal()
 }
 function addProductTocart(title, price, productImg) {
-    var cartShopBox = document.createElement('div')
+    let cartShopBox = document.createElement('div')
      cartShopBox.classList.add('cart-box')
-    var cartItems = document.getElementsByClassName('cart-content')[0]
-    var cartItensNames = cartItems.getElementsByClassName('cart-product-title')
-    for (var i = 0; i < cartItensNames.length; i++) {
+    let cartItems = document.getElementsByClassName('cart-content')[0]
+    let cartItensNames = cartItems.getElementsByClassName('cart-product-title')
+    for (let i = 0; i < cartItensNames.length; i++) {
         if(cartItensNames[i].innerText == title){
         alert('Esse item já foi adicionado no carrinho')
         return
     }
  
 }
-var cartBoxContent = `
+let cartBoxContent = `
              <img src="${productImg}" alt="" class="cart-img">
               <div class="detail-box">
                 <div class="cart-product-title">${title}</div>
@@ -110,16 +110,16 @@ cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change'
 //total
 
 function updatetotal() {
-    var cartContent = document.getElementsByClassName('cart-content')[0]
-    var cartBoxes = cartContent.getElementsByClassName('cart-box')
-    var total = 0
+    let cartContent = document.getElementsByClassName('cart-content')[0]
+    let cartBoxes = cartContent.getElementsByClassName('cart-box')
+    let total = 0
 
-    for (var i = 0; i < cartBoxes.length; i++) {
-        var cartBox = cartBoxes[i]
-        var priceElement = cartBox.getElementsByClassName('cart-price')[0]
-        var quantityElement = cartBox.getElementsByClassName('cart-quantity')[0]
-        var price = parseFloat(priceElement.innerText.replace("$", ""))
-        var quantity = quantityElement.value
+    for (let i = 0; i < cartBoxes.length; i++) {
+        let cartBox = cartBoxes[i]
+        let priceElement = cartBox.getElementsByClassName('cart-price')[0]
+        let quantityElement = cartBox.getElementsByClassName('cart-quantity')[0]
+        let price = parseFloat(priceElement.innerText.replace("$", ""))
+        let quantity = quantityElement.value
         total = total + (price * quantity)
     }
         //tirando casaas decmais deixando apenas 2
